@@ -19,12 +19,12 @@ jobs:
       - name: Install dependencies
         run: |
           make install
-      - name: Set up renv
 
+      - name: Set up renv
         uses: r-lib/actions/setup-renv@v2
 
       - name: Run Data Extraction
-        run: Rscript -e 'rmarkdown::render("source//data_collection.Rmd")'
+        run: Rscript -e 'rmarkdown::render("source//data_collection.Rmd", output_dir = ".", intermediates_dir = tempdir()); file.remove("data_collection.html")'
 
       - name: Push data to Github
         run: |

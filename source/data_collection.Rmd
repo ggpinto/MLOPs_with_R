@@ -19,7 +19,6 @@ library(tibble)
 library(pins)
 library(qs)
 library(here)
-library(gt)
 library(rmarkdown)
 ```
 
@@ -56,8 +55,7 @@ board %>%
 
 Last updated on `r Sys.Date()`, `r nrow(new_data)` new rows were added:
 
-```{r}
-new_data %>%
-  gt()
+```{r, echo = TRUE}
+new_data
 ```
 
