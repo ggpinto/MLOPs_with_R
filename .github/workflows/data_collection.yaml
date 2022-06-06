@@ -24,7 +24,7 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
 
       - name: Run Data Extraction
-        run: Rscript -e 'rmarkdown::render("source//data_collection.Rmd", output_dir = ".", intermediates_dir = tempdir()); file.remove("data_collection.html")'
+        run: Rscript -e 'rmarkdown::render(here::here("source"", "data_collection.Rmd"))'
 
       - name: Push data to Github
         run: |
