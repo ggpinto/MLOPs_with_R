@@ -20,6 +20,7 @@ library(pins)
 library(qs)
 library(here)
 library(gt)
+library(rmarkdown)
 ```
 
 ```{r}
@@ -30,7 +31,7 @@ yesterday <- glue("{Sys.Date()} 00:00:00") %>%
 
 url <- glue("https://api.awattar.at/v1/marketdata?start={yesterday}000")
 
-board <- board_folder(here("board"))
+board <- board_folder(here("data"))
 
 historic_data <- pin_read(board, "energy_price")
 
