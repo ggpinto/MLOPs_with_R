@@ -1,0 +1,62 @@
+---
+title: "Data collection"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+```{r}
+library(magrittr)
+library(glue)
+library(lubridate)
+library(clock)
+library(jsonlite)
+library(purrr)
+library(dplyr)
+library(tibble)
+library(pins)
+library(qs)
+library(here)
+library(gt)
+```
+
+```{r}
+yesterday <- glue("{Sys.Date()} 00:00:00") %>%
+  as_datetime() %>%
+  add_days(-1) %>%
+  as.numeric()
+
+url <- glue("https://api.awattar.at/v1/marketdata?start={yesterday}000")
+
+board <- board_folder(here("board"))
+
+historic_data <- pin_read(board, "energy_price")
+
+new_data <- url %>%
+  fromJSON()  %>%
+  pluck("data") %>%
+  as_tibble() %>%
+  transmute(
+    date_time = as_datetime(start_timestamp/1000),
+    marketprice
+  )
+
+complete_data <- historic_data %>%
+  bind_rows(
+    new_data
+  ) %>%
+  distinct()
+
+board %>%
+  pin_write(complete_data, "energy_price", type = "qs")
+```
+
+Last updated on `r Sys.Date()`, `r nrow(new_data)` new rows were added:
+
+```{r}
+new_data %>%
+  gt()
+```
+

@@ -1,0 +1,8 @@
+file: energy_price.rds
+file_size: 374447
+pin_hash: 80cde96b1dc1e640
+type: rds
+title: 'energy_price: a pinned 65112 x 2 data frame'
+description: ~
+created: 20220606T094537Z
+api_version: 1.0
