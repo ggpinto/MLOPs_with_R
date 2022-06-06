@@ -4,5 +4,5 @@ pin_hash: 906870d06f215b4e
 type: qs
 title: 'energy_price: a pinned 65112 x 2 data frame'
 description: ~
-created: 20220606T110301Z
+created: 20220606T110829Z
 api_version: 1.0
