@@ -1,0 +1,8 @@
+file: energy_price.qs
+file_size: 319489
+pin_hash: 96aedfa3dd4c013a
+type: qs
+title: 'energy_price: a pinned 65184 x 2 data frame'
+description: ~
+created: 20220609T042108Z
+api_version: 1.0
